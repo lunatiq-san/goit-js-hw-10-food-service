@@ -2,7 +2,7 @@
   "name": "parcel-project-template",
   "version": "1.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "homepage": "https://lunatiq-san.github.io/goit-js-hw-10-food-service",
   "scripts": {
     "dev": "parcel src/*.html",
