@@ -12,7 +12,6 @@ const refs = {
 };
 
 let savedTheme = localStorage.getItem('theme');
-console.log(savedTheme);
 
 // Object theme
 const Theme = {
@@ -30,9 +29,6 @@ window.addEventListener('load', currentTheme);
 // if it's enabled, turn it off
 // if it's disabled, turn it on
 function onSwitchToggleClick(event) {
-  const isActiveLight = refs.body.classList.contains(Theme.LIGHT);
-  const isActiveDark = refs.body.classList.contains(Theme.DARK);
-
   event.currentTarget.checked ? enableDarkTheme() : enableLightTheme();
 }
 
