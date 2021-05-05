@@ -1,14 +1,7 @@
-// Добавь функционал изменения темы при нажатии (событие change) на чекбокс #theme-switch-toggle в тулбаре.
-
-// По умолчанию тема светлая.
-// При изменении темы, необходимо добавлять на элемент body класс light-theme или dark-theme.
-// Выбранная тема должна сохраняться между перезагрузками страницы. Для хранения темы используй localStorage.
-// Если при загрузке страницы тема тёмная, не забудь поставить свойство checked у чекбокса #theme-switch-toggle в true, чтобы ползунок сдвинулся в правильное положение.
-
 // DOM Elements
 const refs = {
   switchToggle: document.querySelector('#theme-switch-toggle'),
-  body: document.querySelector('body'),
+  body: document.body,
 };
 
 let savedTheme = localStorage.getItem('theme');
@@ -32,21 +25,20 @@ function onSwitchToggleClick(event) {
   event.currentTarget.checked ? enableDarkTheme() : enableLightTheme();
 }
 
+function toggleTheme(add, remove) {
+  refs.body.classList.remove(remove);
+  refs.body.classList.add(add);
+  // Update theme in the localStorage
+  localStorage.setItem('theme', add);
+}
+
 function enableDarkTheme() {
-  // 1. Add the class dark-theme to the body
-  refs.body.classList.add(Theme.DARK);
-  refs.body.classList.remove(Theme.LIGHT);
-  // 2. Update dark-theme in the localStorage
-  localStorage.setItem('theme', Theme.DARK);
+  toggleTheme(Theme.DARK, Theme.LIGHT);
   refs.switchToggle.checked = true;
 }
 
 function enableLightTheme() {
-  // 1. Add the class light-theme to the body
-  refs.body.classList.add(Theme.LIGHT);
-  refs.body.classList.remove(Theme.DARK);
-  // 2. Update light-theme in the localStorage
-  localStorage.setItem('theme', Theme.LIGHT);
+  toggleTheme(Theme.LIGHT, Theme.DARK);
   refs.switchToggle.checked = false;
 }
 
